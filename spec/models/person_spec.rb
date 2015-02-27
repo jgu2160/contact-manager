@@ -16,4 +16,8 @@ RSpec.describe Person, type: :model do
   it 'is valid' do
     expect(person).to be_valid
   end
+
+  it 'has_an_array_of_phone_numbers' do
+    expect(person.phone_numbers).to eq([])
+  end
 end
