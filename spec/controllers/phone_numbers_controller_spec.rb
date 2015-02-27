@@ -2,17 +2,18 @@ require 'rails_helper'
 
 RSpec.describe PhoneNumbersController, type: :controller do
   let(:valid_attributes) {
-     { number: "MyString", person_id: valid_person.id }
+    { number: "MyString", person_id: alice.id }
   }
-
   let!(:valid_person) { Person.create(first_name: 'jeff', last_name: 'gu') }
+  let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+  let(:bob) { Person.create(first_name: 'Bob', last_name: 'Gu') }
 
   let(:new_attributes) {
     {number: 'MyNewString', person_id: valid_person.id}
   }
 
   let(:invalid_attributes) {
-     { number: nil, person_id: nil }
+    { number: nil, person_id: nil }
   }
   let(:valid_session) { {} }
 
@@ -62,8 +63,9 @@ RSpec.describe PhoneNumbersController, type: :controller do
       end
 
       it "redirects to the created phone_number" do
+        valid_attributes = {number: '555-8888', person_id: alice.id}
         post :create, {:phone_number => valid_attributes}, valid_session
-        expect(response).to redirect_to(PhoneNumber.last)
+        expect(response).to redirect_to(alice)
       end
     end
 
@@ -100,9 +102,10 @@ RSpec.describe PhoneNumbersController, type: :controller do
       end
 
       it "redirects to the phone_number" do
+        valid_attributes = {number: '555-8888', person_id: bob.id}
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => valid_attributes}, valid_session
-        expect(response).to redirect_to(phone_number)
+        expect(response).to redirect_to(bob)
       end
     end
 

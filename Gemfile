@@ -38,5 +38,6 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
+  gem 'capybara'
 end
 

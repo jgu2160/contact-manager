@@ -1,4 +1,4 @@
 class PhoneNumber < ActiveRecord::Base
   belongs_to :person
-  validates :number, presence: true
+  validates :number, :person_id, presence: true
 end
