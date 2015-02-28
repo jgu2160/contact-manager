@@ -85,14 +85,14 @@ RSpec.describe PhoneNumbersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {number: '999'}
       }
 
       it "updates the requested phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => new_attributes}, valid_session
         phone_number.reload
-        skip("Add assertions for updated state")
+        expect(phone_number.number).to eq('999')
       end
 
       it "assigns the requested phone_number as @phone_number" do
