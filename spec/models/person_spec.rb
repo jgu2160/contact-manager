@@ -18,10 +18,14 @@ RSpec.describe Person, type: :model do
   end
 
   it 'has_an_array_of_phone_numbers' do
-    expect(person.phone_numbers).to eq([])
+    person.save
+    person.phone_numbers.create(number: '5', contact_type: 'Person')
+    expect(person.phone_numbers[0]).to belong_to(:contact)
   end
 
   it 'has_an_array_of_emails' do
-    expect(person.emails).to eq([])
+    person.save
+    person.emails.create(address: 'jgu@gmail.com')
+    expect(person.emails[0]).to belong_to(:person)
   end
 end

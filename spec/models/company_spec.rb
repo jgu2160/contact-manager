@@ -13,6 +13,12 @@ RSpec.describe Company, type: :model do
   end
 
   it 'should have phone numbers' do
-    expect(valid_company.phone_numbers).to eq([])
+    valid_company.save
+    valid_company.phone_numbers.create(number: '999', contact_type: 'Company')
+    expect(valid_company.phone_numbers[0]).to belong_to(:contact)
+  end
+
+  it 'should have emails' do
+    expect(valid_company.emails).to eq([])
   end
 end
