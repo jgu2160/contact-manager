@@ -30,7 +30,7 @@
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Edit', edit_person_path(@person) %>
 <%= link_to 'Back', people_path %>
 <%= link_to "Add phone number", new_phone_number_path(contact_id: @person.id, contact_type: 'Person') %>
-<%= link_to "New email", new_email_path(person_id: @person.id) %>
+<%= link_to "New email", new_email_path(contact_id: @person.id, contact_type: 'Person') %>

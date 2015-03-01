@@ -14,7 +14,7 @@ class EmailsController < ApplicationController
 
   # GET /emails/new
   def new
-    @email = Email.new(person_id: params[:person_id])
+    @email = Email.new(contact_id: params[:contact_id], contact_type: params[:contact_type])
   end
 
   # GET /emails/1/edit
@@ -28,7 +28,7 @@ class EmailsController < ApplicationController
 
     respond_to do |format|
       if @email.save
-        format.html { redirect_to @email.person, notice: 'Email was successfully created.' }
+        format.html { redirect_to @email.contact, notice: 'Email was successfully created.' }
         format.json { render :show, status: :created, location: @email }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class EmailsController < ApplicationController
   def update
     respond_to do |format|
       if @email.update(email_params)
-        format.html { redirect_to @email.person, notice: 'Email was successfully updated.' }
+        format.html { redirect_to @email.contact, notice: 'Email was successfully updated.' }
         format.json { render :show, status: :ok, location: @email }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class EmailsController < ApplicationController
   def destroy
     @email.destroy
     respond_to do |format|
-      format.html { redirect_to @email.person, notice: 'Email was successfully destroyed.' }
+      format.html { redirect_to @email.contact, notice: 'Email was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class EmailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def email_params
-      params.require(:email).permit(:address, :person_id)
+      params.require(:email).permit(:address, :contact_id, :contact_type)
     end
 end

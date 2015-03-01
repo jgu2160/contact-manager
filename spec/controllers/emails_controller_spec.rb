@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe EmailsController, type: :controller do
   let(:valid_attributes) {
-    {address: "jgu@gooby.com", person_id: alice.id}
+    {address: "jgu@gooby.com", contact_id: alice.id, contact_type: 'Person'}
   }
   let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
   let(:bob) { Person.create(first_name: 'Bob', last_name: 'Gu') }
   let(:invalid_attributes) {
-    { number: nil, person_id: nil }
+    { number: nil, contact_id: nil, contact_type: nil }
   }
   let(:valid_session) { {} }
 
@@ -77,9 +77,7 @@ RSpec.describe EmailsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        {address: "jgu@ruby.com", person_id: alice.id}
-      }
+      let(:new_attributes) { {address: "jgu@ruby.com", contact_id: alice.id} }
 
       it "updates the requested email" do
         email = Email.create! valid_attributes

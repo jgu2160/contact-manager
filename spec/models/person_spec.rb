@@ -26,6 +26,6 @@ RSpec.describe Person, type: :model do
   it 'has_an_array_of_emails' do
     person.save
     person.emails.create(address: 'jgu@gmail.com')
-    expect(person.emails[0]).to belong_to(:person)
+    expect(person.emails[0]).to belong_to(:contact)
   end
 end
