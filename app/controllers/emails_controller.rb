@@ -1,5 +1,5 @@
 class EmailsController < ApplicationController
-  before_action :set_email, only: [:show, :edit, :update, :destroy]
+  before_action :find_resource, only: [:edit, :update, :destroy]
 
   # GET /emails/new
   def new
@@ -26,8 +26,6 @@ class EmailsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /emails/1
-  # PATCH/PUT /emails/1.json
   def update
     respond_to do |format|
       if @email.update(email_params)
@@ -51,13 +49,13 @@ class EmailsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_email
-      @email = Email.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_email
+    @email = Email.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def email_params
-      params.require(:email).permit(:address, :contact_id, :contact_type)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def email_params
+    params.require(:email).permit(:address, :contact_id, :contact_type)
+  end
 end

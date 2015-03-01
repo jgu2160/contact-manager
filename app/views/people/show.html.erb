@@ -1,34 +1,9 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @person.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @person.last_name %>
-</p>
-
-<ul>
-  <% @person.phone_numbers.each do |phone| %>
-    <li>
-      <%= phone.number %>
-      <%= link_to "edit", edit_phone_number_path(phone) %>
-      <%= link_to "delete", phone, method: 'delete' %>
-    </li>
-  <% end %>
-</ul>
-
-<ul>
-  <% @person.emails.each do |email| %>
-    <li>
-      <%= email.address %>
-      <%= link_to "edit", edit_email_path(email) %>
-      <%= link_to "delete", email, method: 'delete' %>
-    </li>
-  <% end %>
-</ul>
+<h1>
+  <%= @person.first_name %> <%= @person.last_name %>
+</h1>
+<%= render 'phone_numbers/phone_numbers', phone_numbers: @person.phone_numbers %>
+<%= render 'emails/emails', emails: @person.emails %>
 
 <%= link_to 'Edit', edit_person_path(@person) %>
 <%= link_to 'Back', people_path %>

@@ -1,31 +1,11 @@
 <p id="notice"><%= notice %></p>
+<div class="company">
+  <h1><%= @company.name %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
-
-<ul>
-  <% @company.phone_numbers.each do |phone| %>
-    <li>
-      <%= phone.number %>
-      <%= link_to "edit", edit_phone_number_path(phone) %>
-      <%= link_to "delete", phone, method: 'delete' %>
-    </li>
-  <% end %>
-</ul>
-
-<ul>
-  <% @company.emails.each do |email| %>
-    <li>
-      <%= email.address %>
-      <%= link_to "edit", edit_email_path(email) %>
-      <%= link_to "delete", email, method: 'delete' %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to 'Edit', edit_company_path(@company) %>
-<%= link_to 'Back', company_path %>
-<%= link_to "Add phone number", new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %>
-<%= link_to "New email", new_email_path(contact_id: @company.id, contact_type: 'Company') %>
+  <%= render 'phone_numbers/phone_numbers', phone_numbers: @company.phone_numbers %>
+  <%= render 'emails/emails', emails: @company.emails %>
+  <%= link_to 'Edit', edit_company_path(@company) %>
+  <%= link_to 'Back', company_path %>
+  <%= link_to "Add phone number", new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %>
+  <%= link_to "New email", new_email_path(contact_id: @company.id, contact_type: 'Company') %>
+</div>

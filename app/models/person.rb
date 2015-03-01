@@ -1,5 +1,8 @@
 class Person < ActiveRecord::Base
+  include Contact
   validates :first_name, :last_name, presence: true
-  has_many :phone_numbers, as: :contact
-  has_many :emails, as: :contact
+
+  def to_s
+    "#{last_name}, #{first_name}"
+  end
 end
