@@ -1,17 +1,6 @@
 class EmailsController < ApplicationController
   before_action :set_email, only: [:show, :edit, :update, :destroy]
 
-  # GET /emails
-  # GET /emails.json
-  def index
-    @emails = Email.all
-  end
-
-  # GET /emails/1
-  # GET /emails/1.json
-  def show
-  end
-
   # GET /emails/new
   def new
     @email = Email.new(contact_id: params[:contact_id], contact_type: params[:contact_type])
