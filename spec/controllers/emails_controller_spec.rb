@@ -11,22 +11,6 @@ RSpec.describe EmailsController, type: :controller do
   }
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all emails as @emails" do
-      email = Email.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:emails)).to eq([email])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested email as @email" do
-      email = Email.create! valid_attributes
-      get :show, {:id => email.to_param}, valid_session
-      expect(assigns(:email)).to eq(email)
-    end
-  end
-
   describe "GET #new" do
     it "assigns a new email as @email" do
       get :new, {}, valid_session
