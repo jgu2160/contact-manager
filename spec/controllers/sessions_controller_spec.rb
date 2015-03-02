@@ -39,4 +39,17 @@ describe SessionsController do
     post :create
     expect(response).to redirect_to(root_path)
   end
+
+  it 'logs out a user' do
+    @request.env["omniauth.auth"] = {
+      'provider' => 'twitter',
+      'info' => {'name' => 'Bob Jones'},
+      'uid' => 'xyz456'
+    }
+    User.create(provider: 'twitter', uid: 'xyz456', name: 'Bob Jones')
+    post :create
+    delete :destroy
+    expect(User.count).to eq(0)
+    expect(response).to redirect_to(root_path)
+  end
 end

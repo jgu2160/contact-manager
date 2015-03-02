@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :emails, except: [:index, :show]
   resources :phone_numbers, except: [:index, :show]
   resources :people
-  resource :sessions, :only => [:create]
-  #root to: 'companies#index'
+  resource :sessions, :only => [:create, :destroy]
   root to: 'site#index'
   match "/login" => redirect("/auth/twitter"), as: :login, via: [:get, :post]
   get '/auth/:provider/callback' => 'sessions#create'
